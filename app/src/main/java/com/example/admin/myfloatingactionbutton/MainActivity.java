@@ -140,8 +140,11 @@ public class MainActivity extends AppCompatActivity {
             String packageName = resolveInfo.activityInfo.packageName;
 
             Log.e("packageName->", packageName);
-            if (packageName.contains("twitter")||packageName.contains("facebook")||packageName.contains("linkedin")||packageName.contains("plus"))
+            if (packageName.contains("twitter")&&resolveInfo.loadLabel(packageManager).toString().contains("Tweet")
+                    ||packageName.contains("facebook")&&resolveInfo.loadLabel(packageManager).toString().contains("Facebook")||packageName.contains("linkedin")||packageName.contains("plus"))
             {
+                Log.e("Name",""+resolveInfo.activityInfo.name);
+                Log.e("label",""+resolveInfo.loadLabel(getPackageManager()));
                 Intent intent =new Intent();
 //setComponent -> component are the activities in the other application
                 intent.setComponent(new ComponentName(packageName, resolveInfo.activityInfo.name));
